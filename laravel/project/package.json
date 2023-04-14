@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "format": "npm run format:app && npm run format:bash",
+    "postinstall": "npm run tools",
+    "tools": "npm run tool:package-hash && npm run tool:git-config && npm run tool:husky:init",
+    "format:app": "prettier --loglevel error --write \"**/*.+(php|json|js|css|scss|xml)\"",
+    "format:bash:scripts": "prettier --loglevel error --write \"scripts/**/*.+(bash|sh)\"",
+    "format:bash:home": "prettier --loglevel error --write deploy.sh",
+    "format:bash:hooks": "prettier --loglevel error --write .husky/*",
+    "format:bash": "npm run format:bash:scripts && npm run format:bash:home && npm run format:bash:hooks",
+    "tool:husky:init": "bash ./scripts/tools/init-git-hooks.sh",
+    "tool:package-hash": "bash ./scripts/app/update-package-hash-sum.sh",
+    "tool:git-config": "bash ./scripts/app/git-config.sh"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.16.2",
+    "@prettier/plugin-xml": "^0.13.1",
+    "husky": "^7.0.0",
+    "prettier": "^2.2.1",
+    "prettier-plugin-blade": "0.1.2",
+    "prettier-plugin-sh": "^0.7.1"
+  }
+}

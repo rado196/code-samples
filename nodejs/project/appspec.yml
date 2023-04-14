@@ -1,0 +1,20 @@
+version: 0.0
+os: linux
+
+file_exists_behavior: OVERWRITE
+
+files:
+  - source: /
+    destination: /var/www/evan-evcharge/payments
+    overwrite: true
+
+hooks:
+  AfterInstall:
+    - timeout: 300
+      runas: root
+      location: ./scripts/aws/codedeploy/after-install.sh
+
+  ApplicationStart:
+    - timeout: 300
+      runas: root
+      location: ./scripts/aws/codedeploy/start-server.sh

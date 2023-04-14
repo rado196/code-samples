@@ -1,0 +1,17 @@
+{
+  "exec": "bash ./serve.sh",
+  "execArgs": ["--trace-warnings"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": "200",
+  "ignore": [
+    ".dist",
+    ".editorconfig",
+    ".eslintignore",
+    ".eslintrc",
+    ".prettierignore",
+    ".prettierrc",
+    "README.md"
+  ]
+}

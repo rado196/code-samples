@@ -1,0 +1,10 @@
+bootstrap/cache
+vendor
+node_modules
+storage
+.DS_Store
+.env
+.env.example
+package-lock.json
+package.json
+*.blade.php

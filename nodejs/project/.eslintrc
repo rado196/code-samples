@@ -1,0 +1,114 @@
+{
+  "root": true,
+  "parser": "@babel/eslint-parser",
+  "plugins": ["import", "unicorn"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "eslint-comments/no-unused-disable": "off",
+    "yoda": "warn",
+    "prettier/prettier": "warn",
+    "import/no-anonymous-default-export": "error",
+    "import/namespace": "off",
+    "import/no-unresolved": "off",
+    "default-case": "off",
+    "no-loop-func": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-console": "warn",
+    "no-useless-escape": "warn",
+    "eqeqeq": "error",
+    "no-fallthrough": "warn",
+    "semi": "error",
+    "curly": "error",
+    "no-empty-pattern": "off",
+    "no-eval": "off",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-debugger": "warn",
+    "no-constant-condition": "warn",
+    "unicorn/numeric-separators-style": [
+      "warn",
+      {
+        "number": {
+          "minimumDigits": 4,
+          "groupLength": 3
+        }
+      }
+    ],
+    "ban-ts-comment": "off",
+    "no-unsafe-member-access": "off",
+    "no-empty-interface": "off",
+    "no-unsafe-call": "off",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^(props|e|event|_|Sequelize|queryInterface)$"
+      }
+    ],
+    "no-unsafe-assignment": "off",
+    "no-floating-promises": "off",
+    "no-misused-promises": "off",
+    "no-async-promise-executor": "off",
+    "no-unsafe-return": "off",
+    "explicit-module-boundary-types": "off",
+    "no-inferrable-types": "off",
+    "no-empty-function": "off",
+    "restrict-plus-operands": "off",
+    "require-await": "off",
+    "restrict-template-expressions": "off",
+    "ban-types": "off",
+    "unbound-method": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "parser": "@babel/eslint-parser"
+    },
+    {
+      "files": ["*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "tsconfigRootDir": "./",
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+      },
+      "rules": {
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^(props|e|event|_|Sequelize|queryInterface)$"
+          }
+        ]
+      }
+    }
+  ]
+}

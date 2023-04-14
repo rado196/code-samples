@@ -1,0 +1,26 @@
+{
+  "execArgs": ["--trace-warnings", "--unhandled-rejections=strict"],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "quiet": true,
+  "delay": "200",
+  "ext": "ts, js, env",
+  "watch": ["src"],
+  "ignore": [
+    "dist/*",
+    "scripts/*",
+    "public/*",
+    "src/database/migrations/*",
+    "src/database/seeders/*",
+    ".babelrc",
+    ".editorconfig",
+    ".env.example",
+    ".eslintignore",
+    ".prettierignore",
+    "deploy.sh",
+    "app.js",
+    "LICENSE.md",
+    "README.md"
+  ]
+}

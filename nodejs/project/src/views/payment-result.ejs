@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EVAN Payment</title>
+    <meta name="apple-mobile-web-app-capable" />
+
+    <script type="text/javascript">
+      (function (runners) {
+        setTimeout(function () {
+          if (window.ReactNativeWebView) {
+            runners.runOnWebView();
+          } else {
+            runners.runOnBrowser();
+          }
+        }, 500);
+      })({
+        runOnBrowser: function () {
+          const appUrl = 'evan://payment-methods/credit-card/<%= status %>';
+          window.location.replace(appUrl);
+        },
+
+        runOnWebView: function () {
+          const message = '';
+          window.ReactNativeWebView.postMessage(message);
+        },
+      });
+    </script>
+  </head>
+  <body>
+    Payment <%= status === 'failure' ? 'Failure' : 'Success' %>
+  </body>
+</html>

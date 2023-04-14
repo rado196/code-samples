@@ -1,0 +1,26 @@
+{
+  "extends": ["./.eslintrc"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "no-console": "warn",
+    "semi": "warn",
+    "curly": "warn",
+    "no-debugger": "warn",
+    "no-constant-condition": "warn"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "no-unused-vars": "warn"
+      }
+    },
+    {
+      "files": ["*.ts"],
+      "rules": {
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn"
+      }
+    }
+  ]
+}

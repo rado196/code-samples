@@ -1,0 +1,53 @@
+name: Deploy - Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # deploy development config
+  deploy_development:
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy AutoDproc Back-end Development
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          NODE_ENV: development
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_DEV_HOST }}
+          key: ${{ secrets.SSH_DEV_KEY }}
+          username: ${{ secrets.SSH_DEV_USERNAME }}
+          script: |
+            if [[ -f "$HOME/.profile" ]]; then
+              source "$HOME/.profile"
+            fi
+            cd /var/www/avtodproc.com/api-dev && \
+              git reset --hard && \
+              git pull origin main && \
+              bash ./deploy.sh --no-print-color && \
+              git reset --hard
+  # deploy production config
+  deploy_production:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy AutoDproc Back-end Production
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          NODE_ENV: production
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_PROD_HOST }}
+          key: ${{ secrets.SSH_PROD_KEY }}
+          username: ${{ secrets.SSH_PROD_USERNAME }}
+          script: |
+            if [[ -f "$HOME/.profile" ]]; then
+              source "$HOME/.profile"
+            fi
+            cd /var/www/avtodproc.com/api-prod && \
+              git reset --hard && \
+              git pull origin main && \
+              bash ./deploy.sh --no-print-color && \
+              git reset --hard
