@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/web
+    overwrite: true
+
+hooks:
+  AfterInstall:
+    - timeout: 300
+      runas: root
+      location: ./scripts/aws/codedeploy/after-install.sh
+
+  ApplicationStart:
+    - timeout: 300
+      runas: root
+      location: ./scripts/aws/codedeploy/start-server.sh

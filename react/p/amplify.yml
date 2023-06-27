@@ -1,0 +1,42 @@
+## Under "Build settings" scroll down to the section "Build image settings"
+## Press "Edit", choose "Build image" as a "Build image" and in input below
+## write following content "public.ecr.aws/t7o4u3y2/node-18.2.0:latest"
+
+version: 1
+
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo ">>> Exporting environment variables ..."
+        - cp .env.example .env
+        - sed "s|^NEXT_PUBLIC_QR_REDIRECT_URL=.*$|NEXT_PUBLIC_QR_REDIRECT_URL=\"${NEXT_PUBLIC_QR_REDIRECT_URL}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_ANDROID_PLAY_URL=.*$|NEXT_PUBLIC_ANDROID_PLAY_URL=\"${NEXT_PUBLIC_ANDROID_PLAY_URL}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_IOS_APPSTORE_URL=.*$|NEXT_PUBLIC_IOS_APPSTORE_URL=\"${NEXT_PUBLIC_IOS_APPSTORE_URL}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_API_URL=.*$|NEXT_PUBLIC_API_URL=\"${NEXT_PUBLIC_API_URL}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_API_TOKEN=.*$|NEXT_PUBLIC_API_TOKEN=\"${NEXT_PUBLIC_API_TOKEN}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_AWS_S3_REGION=.*$|NEXT_PUBLIC_AWS_S3_REGION=\"${NEXT_PUBLIC_AWS_S3_REGION}\"|g" -i .env
+        - sed "s|^NEXT_PUBLIC_AWS_S3_BUCKET=.*$|NEXT_PUBLIC_AWS_S3_BUCKET=\"${NEXT_PUBLIC_AWS_S3_BUCKET}\"|g" -i .env
+        - echo ">>> Installing node modules ..."
+        - export NPM_TOKEN=${PACKAGE_NPM_TOKEN}
+        - npm install
+    build:
+      commands:
+        - echo ">>> Building project ..."
+        - export NPM_TOKEN=${PACKAGE_NPM_TOKEN}
+        - npm run build
+
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+
+  customHeaders:
+    - pattern: '/_next/static/*'
+      headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=31536000, immutable'
+
+  # cache:
+  #   paths:
+  #     - node_modules/**/*

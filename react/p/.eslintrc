@@ -1,0 +1,173 @@
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "react-app",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "import", "unicorn"],
+  "rules": {
+    // unicorn
+    "unicorn/numeric-separators-style": [
+      "warn",
+      {
+        "onlyIfContainsSeparator": true
+      }
+    ],
+
+    // import
+    "import/no-unresolved": "off",
+    "import/no-anonymous-default-export": "error",
+    "import/namespace": "off",
+    "import/newline-after-import": "error",
+    "import/no-named-as-default-member": "off",
+
+    // prettier
+    "prettier/prettier": "warn",
+
+    // common
+    "max-len": [
+      "error",
+      {
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+        "tabWidth": 2,
+        "code": 90
+      }
+    ],
+    "yoda": "warn",
+    "default-case": "off",
+    "no-loop-func": "warn",
+    "no-extra-boolean-cast": "warn",
+    "no-console": "warn",
+    "no-useless-escape": "warn",
+    "eqeqeq": "warn",
+    "no-fallthrough": "warn",
+    "semi": "warn",
+    "curly": "warn",
+    "eol-last": "warn",
+    "camelcase": [
+      "error",
+      {
+        "ignoreImports": true,
+        "ignoreDestructuring": true,
+        "properties": "never"
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "var",
+        "next": "return"
+      }
+    ],
+    "no-multiple-empty-lines": "warn",
+    "no-eval": "off",
+    "no-self-assign": "error",
+    "no-self-compare": "error",
+    "no-debugger": "warn",
+    "no-prototype-builtins": "off",
+    "no-constant-condition": "warn",
+    "no-empty-pattern": "off",
+    "no-duplicate-imports": "error",
+    "no-unsafe-member-access": "off",
+    "no-empty-interface": "off",
+    "no-unsafe-call": "off",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^(props|e|event|route|_.*|setState|getState|styles|args)$",
+        "varsIgnorePattern": "^(props|e|event|route|_.*|setState|getState|styles|args)$"
+      }
+    ],
+    "no-unsafe-assignment": "off",
+    "no-floating-promises": "off",
+    "no-unsafe-return": "off",
+    "no-inferrable-types": "off",
+    "no-misused-promises": "off",
+    "no-empty-function": "off",
+    "no-async-promise-executor": "off",
+    "no-case-declarations": "off",
+    "require-await": "off",
+    "restrict-plus-operands": "off",
+    "restrict-template-expressions": "off",
+    "unbound-method": "off",
+    "global-require": "error",
+    "explicit-module-boundary-types": "off",
+    "ban-ts-comment": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-key": "error"
+    // "react/jsx-max-props-per-line": [1, { "maximum": 1, "when": "always" }],
+  },
+  "overrides": [
+    {
+      "files": ["*.jsx", "*.js"],
+      "parser": "@babel/eslint-parser",
+      "parserOptions": {
+        "requireConfigFile": false,
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      }
+    },
+    {
+      "files": ["*.tsx", "*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "tsconfigRootDir": "./",
+        "project": ["./tsconfig.json"],
+        "ecmaFeatures": {
+          "jsx": true
+        }
+      },
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "plugins": ["@typescript-eslint"],
+      "rules": {
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          { "argsIgnorePattern": "(^props|^e|^event$)" }
+        ],
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/restrict-plus-operands": "off",
+        "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/ban-types": "off",
+        "@typescript-eslint/unbound-method": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/await-thenable": "off"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+version: 0.2
+
+# env:
+#   variables:
+#     NODE_ENV: production
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - bash ./scripts/aws/codebuild/install.sh
+
+  pre_build:
+    commands:
+      - bash ./scripts/aws/codebuild/prebuild.sh
+
+  build:
+    commands:
+      - bash ./scripts/aws/codebuild/build.sh
+
+  post_build:
+    commands:
+      - bash ./scripts/aws/codebuild/postbuild.sh
+
+artifacts:
+  name: api-source.zip
+  type: zip
+  files:
+    - "**/*"
